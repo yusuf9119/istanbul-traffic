@@ -5,6 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+
 
 # Load dataset
 df = pd.read_csv('traffic_index.csv')
@@ -18,6 +21,11 @@ X = df.drop(['average_traffic_index', 'trafficindexdate'], axis=1)  # Exclude th
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=30, test_size=0.2)
+
+#Feature Scaling 
+scaler = StandardScaler()
+scaler.fit_tramsform(X_train)
+scaler.fit_trainsform(X_test)
 
 # Linear Regression
 lr = LinearRegression()
